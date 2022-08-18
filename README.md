@@ -1,2 +1,2 @@
-# OPC + Wildfly + Helm Sample
+# OCP + Wildfly + Helm Sample
 ![How To Deploy](./OCPWildflyHelm.gif)
