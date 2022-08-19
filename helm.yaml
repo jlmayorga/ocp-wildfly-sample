@@ -1,0 +1,52 @@
+build:
+  uri: https://github.com/jlmayorga/ocp-wildfly-sample.git
+  mode: s2i
+  ref: multiple-datasources
+  s2i:
+    version: latest
+    builderImage: quay.io/wildfly/wildfly-s2i-jdk11
+    runtimeImage: quay.io/wildfly/wildfly-runtime-jdk11
+  deploy:
+    replicas: 1
+    env:
+      - name: DB_SERVICE_PREFIX_MAPPING
+        value: "dbone-postgresql=DSONE,dbtwo-postgresql=DSTWO"
+      - name: DSONE_JNDI
+        value: "java:/jboss/datasources/PostgreSQLDS"
+      - name: DSONE_USERNAME
+        value: "postgre"
+      - name: DSONE_PASSWORD
+        value: "admin"
+      - name: DSONE_DATABASE
+        value: "demodb"
+      - name: DSONE_DRIVER
+        value: "postgresql"
+      - name: DBONE_POSTGRESQL_SERVICE_HOST
+        value: "database-server"
+      - name: DBONE_POSTGRESQL_SERVICE_PORT
+        value: 5432
+      - name: DSONE_MAX_POOL_SIZE
+        value: 10
+      - name: DSONE_MIN_POOL_SIZE
+        value: 5
+      - name: DSONE_NONXA
+        value: true
+      - name: DSTWO_JNDI
+        value: "java:/jboss/datasources/UnusedDS"
+      - name: DSTWO_USERNAME
+        value: "postgre"
+      - name: DSTWO_PASSWORD
+        value: "admin"
+      - name: DSTWO_DATABASE
+        value: "demodb"
+      - name: DSTWO_DRIVER
+        value: "postgresql"
+      - name: DBTWO_POSTGRESQL_SERVICE_HOST
+        value: "database-server"
+      - name: DBTWO_POSTGRESQL_SERVICE_PORT
+        value: 5432
+      - name: DSTWO_MAX_POOL_SIZE
+        value: 5
+      - name: DSTWO_MIN_POOL_SIZE
+        value: 2
+
