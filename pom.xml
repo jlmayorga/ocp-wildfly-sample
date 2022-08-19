@@ -55,6 +55,7 @@
                         <layer>cloud-server</layer>
                         <layer>oracle-datasource</layer>
                         <layer>oracle-driver</layer>
+                        <layer>postgresql-driver</layer>
                     </layers>
                     <galleon-options>
                         <jboss-fork-embedded>${plugin.fork.embedded}</jboss-fork-embedded>
