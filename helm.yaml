@@ -1,7 +1,7 @@
 build:
   uri: https://github.com/jlmayorga/ocp-wildfly-sample.git
   mode: s2i
-  ref: main
+  ref: multiple-datasources
   s2i:
     version: latest
     builderImage: quay.io/wildfly/wildfly-s2i-jdk11
