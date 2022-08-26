@@ -1,0 +1,21 @@
+build:
+  uri: https://github.com/jlmayorga/ocp-wildfly-sample.git
+  mode: s2i
+  ref: multiple-oracle-datasources
+  s2i:
+    version: latest
+    builderImage: quay.io/wildfly/wildfly-s2i-jdk11
+    runtimeImage: quay.io/wildfly/wildfly-runtime-jdk11
+deploy:
+  replicas: 1
+  env:
+    - name: CLI_LAUNCH_SCRIPT
+      value: "/tmp/cli-scripts/datasource-script.cli"
+  volumes:
+    - name: wildfly-datasource-script
+      configMap:
+        name: wildfly-datasource-script
+  volumeMounts:
+    - name: wildfly-datasource-script
+      mountPath: "/tmp/cli-scripts"
+
